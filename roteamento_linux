@@ -1,0 +1,54 @@
+
+Configuração de endereço IPv4 fixo
+
+# ifconfig eth0 192.168.1.1 netmask 255.255.255.0  (configura um ip manualmente)
+
+# ifconfig eth0:1 192.168.1.1 netmask 255.255.255.0 (configura um alias, um segundo endereço ip)
+
+# ifconfig eth0.1 192.168.1.1 netmask 255.255.255.0  (configura IP com dot1.q)
+
+# ifconfig eth0 (verifica se a configuração foi realizada com sucesso)
+
+# ifconfig eth0 down (desativa a placa de rede eth0)
+
+# ifconfig eth0 up (ativa a placa de rede eth0)
+
+# ifdown eth0 (desativa a placa de rede eth0)
+
+# ifup eth0 (ativa a placa de rede eth0)
+
+Roteamento
+
+# route add default gw 192.168.10.10 (configura um gateway)
+
+# route -n (lista a tabela de roteamento)
+
+Podemos utilizar o comando 'route' para adicionar rotas estáticas. Por exemplo, imaginemos que a rede da filial seja 192.168.2.0 com máscara 255.255.255.0 e o roteador que da acesso a essa rede seja o ip 192.168.0.200:
+
+# route add -net 192.168.2.0 mask 255.255.255.0 gw 192.168.0.200
+
+Para remover uma rota:
+
+# route del -net 192.168.2.0 mask 255.255.255.0 gw 192.168.0.200 
+
+Remove a rota default
+
+# route del default
+
+Configurar uma entrada na tabela arp de forma estática
+
+# arp -s 192.168.2.100 00:00:20:13:c1:b5
+
+Verificar o status fisíco da interface de rede
+
+# mii-tool  -v (mostra se há conectividade na NIC)
+
+Configuração de endereço IPv4 dinâmico (dhcp)
+
+# dhclient eth0 -v (configura um ip dinâmicamente por dhcp)
+
+Configuração de uma interface para o modo promíscuo
+
+# ifconfig eth0 promisc (configura a interface eth0 para o modo promíscuo)
+# ifconfig eth0 -promisc (desativa o modo promíscuo)
+# ifconfig eth0 | grep -i PROMISC (verifica e interface eth0 está em modo promíscuo
